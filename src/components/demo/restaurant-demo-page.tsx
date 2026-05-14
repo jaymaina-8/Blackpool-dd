@@ -23,7 +23,7 @@ export function RestaurantDemoPage({
           Draft preview
         </div>
       ) : null}
-      <section className="relative grid min-h-[88svh] overflow-hidden bg-ink text-white">
+      <section className="relative grid min-h-[86svh] overflow-hidden bg-ink text-white">
         {heroImage ? (
           <Image
             src={heroImage}
@@ -32,22 +32,22 @@ export function RestaurantDemoPage({
             priority
             unoptimized
             sizes="100vw"
-            className="absolute inset-0 h-full w-full object-cover opacity-55"
+            className="absolute inset-0 h-full w-full object-cover opacity-60"
           />
         ) : null}
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/25" />
-        <div className="relative mx-auto flex w-full max-w-6xl flex-col justify-end px-4 pb-16 pt-28">
-          <p className="mb-4 text-sm font-bold uppercase tracking-[0.2em] text-white/75">
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/55 to-black/20" />
+        <div className="relative mx-auto flex w-full max-w-6xl flex-col justify-end px-4 pb-12 pt-24 sm:pb-16 sm:pt-28">
+          <p className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-white/75 sm:text-sm">
             {demo.area}
           </p>
-          <h1 className="max-w-4xl text-5xl font-black tracking-tight md:text-7xl">
+          <h1 className="max-w-4xl text-4xl font-black tracking-tight sm:text-5xl md:text-7xl">
             {demo.name}
           </h1>
-          <p className="mt-5 max-w-2xl text-xl leading-8 text-white/88">
+          <p className="mt-5 max-w-2xl text-lg leading-8 text-white/88 sm:text-xl">
             {demo.tagline ||
               `Order from ${demo.name} in ${demo.area} with a faster, easier WhatsApp experience.`}
           </p>
-          <div className="mt-8 flex flex-wrap gap-3">
+          <div className="mt-8 grid gap-3 sm:flex sm:flex-wrap">
             <a
               href={whatsappUrl}
               target="_blank"
@@ -71,21 +71,21 @@ export function RestaurantDemoPage({
         </div>
       </section>
 
-      <section className="bg-cream py-16">
+      <section className="bg-cream py-12 sm:py-16">
         <div className="mx-auto max-w-6xl px-4">
           <div className="mb-8 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
             <div>
               <p className="text-sm font-bold uppercase tracking-[0.18em] text-flame">
                 Featured menu
               </p>
-              <h2 className="mt-2 text-3xl font-black tracking-tight md:text-4xl">
+              <h2 className="mt-2 text-3xl font-black tracking-tight sm:text-4xl">
                 Customer favorites
               </h2>
             </div>
             <a
               href={whatsappUrl}
               target="_blank"
-              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md bg-ink px-4 py-2 text-sm font-bold text-white"
+              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md bg-ink px-4 py-2 text-sm font-bold text-white shadow-sm hover:bg-black"
             >
               Start order <ArrowUpRight size={16} />
             </a>
@@ -95,7 +95,7 @@ export function RestaurantDemoPage({
               {demo.restaurant_menu_items.map((item) => (
                 <article
                   key={item.id}
-                  className="overflow-hidden rounded-lg border border-ink/10 bg-white shadow-soft"
+                  className="overflow-hidden rounded-lg border border-ink/10 bg-paper shadow-soft transition hover:-translate-y-0.5 hover:shadow-lift"
                 >
                   {item.image_url ? (
                     <Image
@@ -113,10 +113,10 @@ export function RestaurantDemoPage({
                     />
                   )}
                   <div className="p-4">
-                    <div className="flex items-start justify-between gap-3">
+                    <div className="grid gap-2 sm:flex sm:items-start sm:justify-between sm:gap-3">
                       <h3 className="text-lg font-black text-ink">{item.name}</h3>
                       {item.price ? (
-                        <p className="shrink-0 text-sm font-black text-flame">
+                        <p className="shrink-0 text-sm font-black text-palm">
                           {item.price}
                         </p>
                       ) : null}
@@ -134,13 +134,13 @@ export function RestaurantDemoPage({
         </div>
       </section>
 
-      <section className="py-16">
+      <section className="py-12 sm:py-16">
         <div className="mx-auto grid max-w-6xl gap-8 px-4 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <div>
             <p className="text-sm font-bold uppercase tracking-[0.18em] text-flame">
               Why choose us
             </p>
-            <h2 className="mt-2 text-3xl font-black tracking-tight md:text-4xl">
+            <h2 className="mt-2 text-3xl font-black tracking-tight sm:text-4xl">
               Easy ordering, fresh meals, less waiting.
             </h2>
             <p className="mt-4 text-base leading-7 text-ink/65">
@@ -151,7 +151,7 @@ export function RestaurantDemoPage({
           <div className="grid gap-3 sm:grid-cols-2">
             {["Fast WhatsApp ordering", "Fresh customer favorites", "Simple location details", "Mobile-first experience"].map(
               (item) => (
-                <div key={item} className="rounded-lg border border-ink/10 bg-cream p-5">
+                <div key={item} className="rounded-lg border border-ink/10 bg-paper p-5 shadow-sm">
                   <h3 className="font-black text-ink">{item}</h3>
                   <p className="mt-2 text-sm leading-6 text-ink/60">
                     Built to help customers decide quickly and contact the restaurant with less friction.
@@ -163,13 +163,13 @@ export function RestaurantDemoPage({
         </div>
       </section>
 
-      <section className="bg-ink py-16 text-white">
+      <section className="bg-ink py-12 text-white sm:py-16">
         <div className="mx-auto max-w-6xl px-4">
           <div className="mb-8">
             <p className="text-sm font-bold uppercase tracking-[0.18em] text-white/55">
               Gallery
             </p>
-            <h2 className="mt-2 text-3xl font-black tracking-tight md:text-4xl">
+            <h2 className="mt-2 text-3xl font-black tracking-tight sm:text-4xl">
               A better first impression
             </h2>
           </div>
@@ -183,7 +183,7 @@ export function RestaurantDemoPage({
                   width={600}
                   height={600}
                   unoptimized
-                  className="aspect-square w-full rounded-lg object-cover"
+                  className="aspect-square w-full rounded-lg object-cover shadow-lg"
                 />
               ))}
             </div>
@@ -195,19 +195,19 @@ export function RestaurantDemoPage({
         </div>
       </section>
 
-      <section className="bg-cream py-16">
+      <section className="bg-cream py-12 sm:py-16">
         <div className="mx-auto grid max-w-6xl gap-8 px-4 lg:grid-cols-[1fr_0.8fr] lg:items-center">
           <div>
             <p className="text-sm font-bold uppercase tracking-[0.18em] text-flame">
               Contact
             </p>
-            <h2 className="mt-2 text-3xl font-black tracking-tight md:text-5xl">
+            <h2 className="mt-2 text-3xl font-black tracking-tight sm:text-4xl md:text-5xl">
               Ready to order from {demo.name}?
             </h2>
             <p className="mt-4 max-w-2xl text-base leading-7 text-ink/65">
               Tap WhatsApp to start your order, call directly, or find the restaurant in {demo.area}.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-8 grid gap-3 sm:flex sm:flex-wrap">
               <a
                 href={whatsappUrl}
                 target="_blank"
@@ -226,7 +226,7 @@ export function RestaurantDemoPage({
               </a>
             </div>
           </div>
-          <div className="rounded-lg border border-ink/10 bg-white p-5 shadow-soft">
+          <div className="rounded-lg border border-ink/10 bg-paper p-5 shadow-soft">
             <div className="grid gap-4">
               <ContactRow icon={<Phone size={18} />} label="Phone" value={demo.phone} />
               <ContactRow icon={<MessageCircle size={18} />} label="WhatsApp" value={demo.whatsapp_number} />
@@ -265,11 +265,11 @@ function ContactRow({
   value: string;
 }) {
   return (
-    <div className="flex items-center gap-3 rounded-md bg-cream px-4 py-3">
+    <div className="flex min-w-0 items-center gap-3 rounded-md bg-white px-4 py-3">
       <div className="text-flame">{icon}</div>
-      <div>
+      <div className="min-w-0">
         <p className="text-xs font-bold uppercase tracking-[0.14em] text-ink/45">{label}</p>
-        <p className="text-sm font-bold text-ink">{value}</p>
+        <p className="break-words text-sm font-bold text-ink">{value}</p>
       </div>
     </div>
   );

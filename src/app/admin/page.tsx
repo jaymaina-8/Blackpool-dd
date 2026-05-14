@@ -7,13 +7,13 @@ export default async function AdminPage() {
   const published = demos.filter((demo) => demo.status === "published").length;
 
   return (
-    <div className="grid gap-8">
-      <section className="grid gap-6 rounded-lg border border-ink/10 bg-white p-6 shadow-soft md:grid-cols-[1.4fr_0.6fr]">
+    <div className="grid gap-6 sm:gap-8">
+      <section className="grid gap-6 rounded-lg border border-ink/10 bg-paper p-5 shadow-soft sm:p-6 md:grid-cols-[1.35fr_0.65fr]">
         <div>
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-flame">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-palm">
             Internal sales engine
           </p>
-          <h2 className="mt-3 text-3xl font-bold tracking-tight text-ink md:text-5xl">
+          <h2 className="mt-3 max-w-3xl text-3xl font-black tracking-tight text-ink sm:text-4xl md:text-5xl">
             Generate restaurant demos in minutes.
           </h2>
           <p className="mt-4 max-w-2xl text-base leading-7 text-ink/65">
@@ -22,7 +22,7 @@ export default async function AdminPage() {
           </p>
           <Link
             href="/admin/demos/new"
-            className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-md bg-flame px-4 py-2 text-sm font-bold text-white hover:bg-orange-700"
+            className="mt-6 inline-flex min-h-11 items-center justify-center gap-2 rounded-md bg-ink px-4 py-2 text-sm font-bold text-white shadow-sm hover:bg-black"
           >
             Create Demo <ArrowRight size={16} />
           </Link>
@@ -43,7 +43,7 @@ export default async function AdminPage() {
 
 function Metric({ label, value }: { label: string; value: number }) {
   return (
-    <div className="rounded-md border border-ink/10 bg-cream p-4">
+    <div className="rounded-md border border-ink/10 bg-white p-4">
       <p className="text-sm text-ink/55">{label}</p>
       <p className="mt-1 text-3xl font-bold text-ink">{value}</p>
     </div>
@@ -60,7 +60,7 @@ function Feature({
   text: string;
 }) {
   return (
-    <article className="rounded-lg border border-ink/10 bg-white p-5">
+    <article className="rounded-lg border border-ink/10 bg-paper p-5 shadow-sm">
       <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-md bg-palm/10 text-palm">
         {icon}
       </div>

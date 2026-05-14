@@ -140,7 +140,7 @@ export function DemoForm({
   }
 
   return (
-    <form className="grid gap-6" onSubmit={submit}>
+    <form className="grid gap-5 sm:gap-6" onSubmit={submit}>
       <Panel title="Restaurant details">
         <div className="grid gap-4 md:grid-cols-2">
           <Field label="Restaurant name">
@@ -288,7 +288,7 @@ export function DemoForm({
       >
         <div className="grid gap-4">
           {payload.menu_items.map((item, index) => (
-            <div key={index} className="rounded-lg border border-ink/10 bg-cream p-4">
+            <div key={index} className="rounded-md border border-ink/10 bg-white p-4 shadow-sm">
               <div className="mb-4 flex items-center justify-between gap-3">
                 <h4 className="font-bold text-ink">Menu item {index + 1}</h4>
                 <Button
@@ -370,7 +370,7 @@ export function DemoForm({
       >
         <div className="grid gap-4 md:grid-cols-2">
           {payload.gallery_images.map((image, index) => (
-            <div key={index} className="rounded-lg border border-ink/10 bg-cream p-4">
+            <div key={index} className="rounded-md border border-ink/10 bg-white p-4 shadow-sm">
               <div className="mb-4 flex items-center justify-between gap-3">
                 <h4 className="font-bold text-ink">Gallery image {index + 1}</h4>
                 <Button
@@ -428,12 +428,12 @@ export function DemoForm({
         </div>
       ) : null}
 
-      <div className="sticky bottom-0 -mx-4 border-t border-ink/10 bg-cream/95 px-4 py-4 backdrop-blur">
+      <div className="sticky bottom-0 -mx-4 border-t border-ink/10 bg-paper/95 px-4 py-4 shadow-[0_-12px_30px_rgba(23,20,18,0.08)] backdrop-blur">
         <div className="mx-auto flex max-w-6xl flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-sm text-ink/60">
+          <p className="min-w-0 break-words text-sm text-ink/60">
             Preview path: /demo/{payload.slug || suggestedSlug || "restaurant-area"}
           </p>
-          <div className="flex flex-wrap gap-2">
+          <div className="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap">
             {demo ? (
               <a
                 href={`/demo/${payload.slug || demo.slug}?preview=1`}
@@ -444,7 +444,7 @@ export function DemoForm({
                 Preview
               </a>
             ) : null}
-            <Button disabled={saving}>
+            <Button className={demo ? "" : "sm:min-w-36"} disabled={saving}>
               <Save size={16} />
               {saving ? "Saving..." : "Save demo"}
             </Button>
@@ -465,9 +465,9 @@ function Panel({
   action?: React.ReactNode;
 }) {
   return (
-    <section className="rounded-lg border border-ink/10 bg-white p-5 shadow-soft">
+    <section className="rounded-lg border border-ink/10 bg-paper p-4 shadow-soft sm:p-5">
       <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <h3 className="text-xl font-bold text-ink">{title}</h3>
+        <h3 className="text-lg font-black tracking-tight text-ink sm:text-xl">{title}</h3>
         {action}
       </div>
       <div className="grid gap-4">{children}</div>
@@ -486,7 +486,7 @@ function ColorField({
 }) {
   return (
     <Field label={label}>
-      <div className="flex gap-2">
+      <div className="grid grid-cols-[3.5rem_1fr] gap-2">
         <input
           className="h-11 w-14 rounded-md border border-ink/15 bg-white p-1"
           type="color"

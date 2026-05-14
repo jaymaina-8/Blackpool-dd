@@ -16,7 +16,9 @@ export default async function EditDemoPage({ params }: PageProps) {
   return (
     <div className="grid gap-6">
       <div>
-        <h2 className="text-3xl font-bold text-ink">Edit demo</h2>
+        <h2 className="text-3xl font-black tracking-tight text-ink sm:text-4xl">
+          Edit demo
+        </h2>
         <p className="mt-2 text-sm text-ink/60">
           Update content, menu items, images, and publish state.
         </p>

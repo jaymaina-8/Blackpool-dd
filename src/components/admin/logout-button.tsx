@@ -16,9 +16,10 @@ export function LogoutButton() {
   }
 
   return (
-    <Button variant="secondary" onClick={logout}>
+    <Button className="px-3" variant="secondary" onClick={logout}>
       <LogOut size={16} />
-      Sign out
+      <span className="hidden min-[420px]:inline">Sign out</span>
+      <span className="min-[420px]:hidden">Out</span>
     </Button>
   );
 }
