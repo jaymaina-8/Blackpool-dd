@@ -10,21 +10,24 @@ export function DemoFooter({ demo }: { demo: DemoWithRelations }) {
 
   return (
     <footer className="border-t border-ink/10 bg-white px-4 py-8 text-ink">
-      <div className="mx-auto grid max-w-6xl gap-6 text-sm md:grid-cols-[1fr_auto_1fr] md:items-center">
+      <div className="mx-auto grid max-w-6xl gap-7 text-sm md:grid-cols-[1fr_auto_1fr] md:items-start">
         <div className="min-w-0">
-          <h2 className="truncate text-lg font-black tracking-tight">{demo.name}</h2>
-          <p className="mt-1 max-w-md leading-6 text-ink/58">{tagline}</p>
+          <h2 className="truncate text-xl font-black tracking-tight">{demo.name}</h2>
+          <p className="mt-2 max-w-md leading-6 text-ink/58">{tagline}</p>
+          <p className="mt-4 text-xs font-semibold uppercase tracking-[0.14em] text-ink/38">
+            Powered by Blackpool Industry.
+          </p>
         </div>
 
-        <div className="grid gap-2 text-ink/70 sm:grid-cols-2 md:grid-cols-1">
+        <div className="grid gap-2 rounded-lg bg-cream/70 p-3 text-ink/70 sm:grid-cols-2 md:grid-cols-1">
           <a
             href={`tel:${demo.phone}`}
-            className="inline-flex min-h-9 items-center gap-2 font-bold hover:text-ink"
+            className="inline-flex min-h-9 items-center gap-2 rounded-md px-2 font-bold hover:bg-white hover:text-ink"
           >
             <Phone size={16} aria-hidden="true" />
             {demo.phone}
           </a>
-          <p className="inline-flex min-h-9 items-center gap-2 font-bold">
+          <p className="inline-flex min-h-9 items-center gap-2 rounded-md px-2 font-bold">
             <MapPin size={16} aria-hidden="true" />
             {demo.area}
           </p>
@@ -41,7 +44,7 @@ export function DemoFooter({ demo }: { demo: DemoWithRelations }) {
             <MessageCircle size={16} aria-hidden="true" />
             WhatsApp
           </FooterLink>
-          <p className="basis-full pt-1 text-xs font-semibold uppercase tracking-[0.14em] text-ink/38 md:text-right">
+          <p className="basis-full pt-2 text-xs font-semibold uppercase tracking-[0.14em] text-ink/38 md:text-right">
             Built for mobile ordering
           </p>
         </div>

@@ -6,11 +6,9 @@ import { getWhatsAppUrl } from "@/lib/whatsapp";
 import type { DemoWithRelations } from "@/lib/types";
 
 export function RestaurantDemoPage({
-  demo,
-  preview = false
+  demo
 }: {
   demo: DemoWithRelations;
-  preview?: boolean;
 }) {
   const whatsappUrl = getWhatsAppUrl(demo.whatsapp_number, demo.name);
   const heroImage =
@@ -20,11 +18,6 @@ export function RestaurantDemoPage({
 
   return (
     <main className="min-h-screen bg-white text-ink">
-      {preview ? (
-        <div className="bg-ink px-4 py-2 text-center text-xs font-semibold uppercase tracking-[0.14em] text-white">
-          Draft preview
-        </div>
-      ) : null}
       <DemoNavbar demo={demo} />
       <section className="relative grid min-h-[86svh] overflow-hidden bg-ink text-white">
         {heroImage ? (
