@@ -1,4 +1,4 @@
-import { requireUser, getPublishedDemoBySlug } from "@/lib/demo-data";
+import { canPreviewDemos, getDemoBySlug } from "@/lib/demo-data";
 import { RestaurantDemoPage } from "@/components/demo/restaurant-demo-page";
 
 type PageProps = {
@@ -12,7 +12,7 @@ type PageProps = {
 
 export async function generateMetadata({ params }: PageProps) {
   const { slug } = await params;
-  const demo = await getPublishedDemoBySlug(slug, false).catch(() => null);
+  const demo = await getDemoBySlug(slug).catch(() => null);
 
   if (!demo) {
     return {
@@ -30,9 +30,9 @@ export async function generateMetadata({ params }: PageProps) {
 
 export default async function PublicDemoPage({ params, searchParams }: PageProps) {
   const [{ slug }, resolvedSearchParams] = await Promise.all([params, searchParams]);
-  const wantsPreview = resolvedSearchParams.preview === "1";
-  const user = wantsPreview ? await requireUser() : null;
-  const demo = await getPublishedDemoBySlug(slug, Boolean(user));
+  const isPreview = resolvedSearchParams.preview === "1";
+  const includeDrafts = isPreview && (await canPreviewDemos());
+  const demo = await getDemoBySlug(slug, { includeDrafts });
 
-  return <RestaurantDemoPage demo={demo} preview={wantsPreview && Boolean(user)} />;
+  return <RestaurantDemoPage demo={demo} preview={includeDrafts} />;
 }
