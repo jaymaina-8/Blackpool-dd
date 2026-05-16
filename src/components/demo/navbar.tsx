@@ -6,7 +6,7 @@ export function DemoNavbar({ demo }: { demo: DemoWithRelations }) {
   const whatsappUrl = getWhatsAppUrl(demo.whatsapp_number, demo.name);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-white/10 bg-ink/88 text-white shadow-sm backdrop-blur-md">
+    <header className="sticky top-0 z-40 border-b border-white/10 bg-ink/95 text-white shadow-sm backdrop-blur-md">
       <nav
         className="mx-auto flex min-h-14 w-full max-w-6xl items-center justify-between gap-3 px-4"
         aria-label={`${demo.name} demo navigation`}
