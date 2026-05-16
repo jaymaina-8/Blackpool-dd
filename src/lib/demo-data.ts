@@ -63,12 +63,13 @@ export async function getDemoBySlug(
   slug: string,
   { includeDrafts = false }: { includeDrafts?: boolean } = {}
 ) {
+  const normalizedSlug = slug.trim().toLowerCase();
   const supabase = await createSupabaseServerClient();
   if (!supabase) notFound();
   let query = supabase
     .from("restaurant_demos")
     .select(demoSelect)
-    .eq("slug", slug)
+    .eq("slug", normalizedSlug)
     .order("sort_order", {
       referencedTable: "restaurant_menu_items",
       ascending: true
@@ -81,6 +82,15 @@ export async function getDemoBySlug(
   if (!includeDrafts) query = query.eq("status", "published");
 
   const { data, error } = await query.single<DemoWithRelations>();
+  if (process.env.DEBUG_DEMO_LOOKUP === "1") {
+    console.log("Demo lookup", {
+      slug,
+      normalizedSlug,
+      includeDrafts,
+      found: Boolean(data),
+      error
+    });
+  }
   if (error || !data) notFound();
   return data;
 }
