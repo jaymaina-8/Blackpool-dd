@@ -9,7 +9,6 @@ export function RestaurantDemoPage({
   demo
 }: {
   demo: DemoWithRelations;
-  preview?: boolean;
 }) {
   const whatsappUrl = getWhatsAppUrl(demo.whatsapp_number, demo.name);
   const heroImage =

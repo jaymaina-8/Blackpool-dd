@@ -34,5 +34,5 @@ export default async function PublicDemoPage({ params, searchParams }: PageProps
   const includeDrafts = isPreview && (await canPreviewDemos());
   const demo = await getDemoBySlug(slug, { includeDrafts });
 
-  return <RestaurantDemoPage demo={demo} preview={includeDrafts} />;
+  return <RestaurantDemoPage demo={demo} />;
 }
