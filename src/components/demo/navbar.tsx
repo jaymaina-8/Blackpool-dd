@@ -37,6 +37,16 @@ export function DemoNavbar({ demo }: { demo: DemoWithRelations }) {
               <MobileNavLink href="#menu">Menu</MobileNavLink>
               <MobileNavLink href="#gallery">Gallery</MobileNavLink>
               <MobileNavLink href="#contact">Contact</MobileNavLink>
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-1 inline-flex min-h-10 items-center justify-center gap-2 rounded-md px-3 py-2 text-sm font-black text-white"
+                style={{ backgroundColor: demo.accent_color }}
+              >
+                <MessageCircle size={16} aria-hidden="true" />
+                Order on WhatsApp
+              </a>
               <div className="mt-1 border-t border-ink/10 px-3 py-2 text-xs font-semibold leading-5 text-ink/55">
                 <p>{demo.area}</p>
                 <p>{demo.phone}</p>
@@ -47,7 +57,7 @@ export function DemoNavbar({ demo }: { demo: DemoWithRelations }) {
             href={whatsappUrl}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex min-h-10 shrink-0 items-center justify-center gap-2 rounded-md px-3 py-2 text-xs font-black text-white shadow-soft sm:px-4 sm:text-sm"
+            className="hidden min-h-10 shrink-0 items-center justify-center gap-2 rounded-md px-3 py-2 text-xs font-black text-white shadow-soft sm:px-4 sm:text-sm md:inline-flex"
             style={{ backgroundColor: demo.accent_color }}
           >
             <MessageCircle size={16} aria-hidden="true" />
