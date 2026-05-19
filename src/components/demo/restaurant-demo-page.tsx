@@ -2,7 +2,7 @@ import { ArrowUpRight, Instagram, MapPin, MessageCircle, Phone } from "lucide-re
 import Image from "next/image";
 import { DemoFooter } from "@/components/demo/footer";
 import { DemoNavbar } from "@/components/demo/navbar";
-import { getWhatsAppUrl } from "@/lib/whatsapp";
+import { getCtaLabel, getCtaUrl, getWhatsAppUrl } from "@/lib/whatsapp";
 import type { DemoWithRelations } from "@/lib/types";
 
 export function RestaurantDemoPage({
@@ -15,6 +15,16 @@ export function RestaurantDemoPage({
     demo.hero_image_url ||
     demo.restaurant_gallery_images[0]?.image_url ||
     demo.restaurant_menu_items.find((item) => item.image_url)?.image_url;
+
+  const ctaLabel = demo.cta_label || getCtaLabel(demo.cta_type);
+  const ctaUrl = getCtaUrl(
+    demo.cta_type,
+    demo.whatsapp_number,
+    demo.name,
+    demo.area,
+    demo.google_maps_url || undefined,
+    demo.slug
+  );
 
   return (
     <main className="min-h-screen bg-white text-ink">
@@ -41,22 +51,24 @@ export function RestaurantDemoPage({
           </h1>
           <p className="mt-5 max-w-2xl text-lg leading-8 text-white/88 sm:text-xl">
             {demo.tagline ||
-              `Order from ${demo.name} in ${demo.area} with a faster, easier WhatsApp experience.`}
+              `Order from ${demo.name} in ${demo.area} with a faster, more polished experience.`}
           </p>
           <div className="mt-8 grid gap-3 sm:flex sm:flex-wrap">
             <a
-              href={whatsappUrl}
+              href={ctaUrl}
               target="_blank"
+              rel="noreferrer"
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md px-5 py-3 text-sm font-black text-white shadow-soft"
               style={{ backgroundColor: demo.accent_color }}
             >
               <MessageCircle size={18} />
-              Order on WhatsApp
+              {ctaLabel}
             </a>
             {demo.google_maps_url ? (
               <a
                 href={demo.google_maps_url}
                 target="_blank"
+                rel="noreferrer"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md border border-white/25 bg-white/10 px-5 py-3 text-sm font-bold text-white backdrop-blur hover:bg-white/15"
               >
                 <MapPin size={18} />
@@ -79,11 +91,12 @@ export function RestaurantDemoPage({
               </h2>
             </div>
             <a
-              href={whatsappUrl}
+              href={ctaUrl}
               target="_blank"
+              rel="noreferrer"
               className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md bg-ink px-4 py-2 text-sm font-bold text-white shadow-sm hover:bg-black"
             >
-              Start order <ArrowUpRight size={16} />
+              {ctaLabel} <ArrowUpRight size={16} />
             </a>
           </div>
           {demo.restaurant_menu_items.length ? (
@@ -205,13 +218,14 @@ export function RestaurantDemoPage({
             </p>
             <div className="mt-8 grid gap-3 sm:flex sm:flex-wrap">
               <a
-                href={whatsappUrl}
+                href={ctaUrl}
                 target="_blank"
+                rel="noreferrer"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md px-5 py-3 text-sm font-black text-white"
                 style={{ backgroundColor: demo.accent_color }}
               >
                 <MessageCircle size={18} />
-                WhatsApp order
+                {ctaLabel}
               </a>
               <a
                 href={`tel:${demo.phone}`}

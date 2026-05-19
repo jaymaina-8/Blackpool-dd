@@ -16,6 +16,13 @@ export type RestaurantDemo = {
   facebook_url: string | null;
   primary_color: string;
   accent_color: string;
+  restaurant_type: string;
+  cta_type: string;
+  cta_label: string | null;
+  cta_url: string | null;
+  secondary_cta_enabled: boolean;
+  secondary_cta_label: string | null;
+  secondary_cta_url: string | null;
   status: DemoStatus;
   published_at: string | null;
   created_at: string;
@@ -29,6 +36,8 @@ export type MenuItem = {
   description: string | null;
   price: string | null;
   image_url: string | null;
+  category: string;
+  featured: boolean;
   sort_order: number;
   created_at: string;
   updated_at: string;
@@ -63,6 +72,13 @@ export type DemoPayload = {
   facebook_url?: string;
   primary_color?: string;
   accent_color?: string;
+  restaurant_type: string;
+  cta_type: string;
+  cta_label?: string;
+  cta_url?: string;
+  secondary_cta_enabled: boolean;
+  secondary_cta_label?: string;
+  secondary_cta_url?: string;
   status: DemoStatus;
   menu_items: Array<{
     id?: string;
@@ -71,6 +87,8 @@ export type DemoPayload = {
     price?: string;
     image_url?: string;
     sort_order: number;
+    category?: string;
+    featured?: boolean;
   }>;
   gallery_images: Array<{
     id?: string;

@@ -1,9 +1,17 @@
 import { Instagram, MapPin, MessageCircle, Phone } from "lucide-react";
-import { getWhatsAppUrl } from "@/lib/whatsapp";
+import { getCtaLabel, getCtaUrl } from "@/lib/whatsapp";
 import type { DemoWithRelations } from "@/lib/types";
 
 export function DemoFooter({ demo }: { demo: DemoWithRelations }) {
-  const whatsappUrl = getWhatsAppUrl(demo.whatsapp_number, demo.name);
+  const ctaLabel = demo.cta_label || getCtaLabel(demo.cta_type);
+  const ctaUrl = getCtaUrl(
+    demo.cta_type,
+    demo.whatsapp_number,
+    demo.name,
+    demo.area,
+    demo.google_maps_url || undefined,
+    demo.slug
+  );
   const tagline =
     demo.tagline ||
     `Fast WhatsApp ordering for fresh meals in ${demo.area}.`;
@@ -53,9 +61,9 @@ export function DemoFooter({ demo }: { demo: DemoWithRelations }) {
               Instagram
             </FooterLink>
           ) : null}
-          <FooterLink href={whatsappUrl}>
+          <FooterLink href={ctaUrl}>
             <MessageCircle size={16} aria-hidden="true" />
-            WhatsApp
+            {ctaLabel}
           </FooterLink>
           <p className="basis-full pt-2 text-xs font-semibold uppercase tracking-[0.14em] text-slate-300 md:text-right">
             Built for mobile ordering
