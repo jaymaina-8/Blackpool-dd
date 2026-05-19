@@ -1,9 +1,17 @@
 import { Menu, MessageCircle } from "lucide-react";
-import { getWhatsAppUrl } from "@/lib/whatsapp";
+import { getCtaLabel, getCtaUrl } from "@/lib/whatsapp";
 import type { DemoWithRelations } from "@/lib/types";
 
 export function DemoNavbar({ demo }: { demo: DemoWithRelations }) {
-  const whatsappUrl = getWhatsAppUrl(demo.whatsapp_number, demo.name);
+  const ctaLabel = demo.cta_label || getCtaLabel(demo.cta_type);
+  const ctaUrl = getCtaUrl(
+    demo.cta_type,
+    demo.whatsapp_number,
+    demo.name,
+    demo.area,
+    demo.google_maps_url || undefined,
+    demo.slug
+  );
 
   return (
     <header className="sticky top-0 z-40 border-b border-white/10 bg-ink/95 text-white shadow-sm backdrop-blur-md">
@@ -38,14 +46,14 @@ export function DemoNavbar({ demo }: { demo: DemoWithRelations }) {
               <MobileNavLink href="#gallery">Gallery</MobileNavLink>
               <MobileNavLink href="#contact">Contact</MobileNavLink>
               <a
-                href={whatsappUrl}
+                href={ctaUrl}
                 target="_blank"
                 rel="noreferrer"
                 className="mt-1 inline-flex min-h-10 items-center justify-center gap-2 rounded-md px-3 py-2 text-sm font-black text-white"
                 style={{ backgroundColor: demo.accent_color }}
               >
                 <MessageCircle size={16} aria-hidden="true" />
-                Order on WhatsApp
+                {ctaLabel}
               </a>
               <div className="mt-1 border-t border-ink/10 px-3 py-2 text-xs font-semibold leading-5 text-ink/55">
                 <p>{demo.area}</p>
@@ -54,15 +62,15 @@ export function DemoNavbar({ demo }: { demo: DemoWithRelations }) {
             </div>
           </details>
           <a
-            href={whatsappUrl}
+            href={ctaUrl}
             target="_blank"
             rel="noreferrer"
             className="hidden min-h-10 shrink-0 items-center justify-center gap-2 rounded-md px-3 py-2 text-xs font-black text-white shadow-soft sm:px-4 sm:text-sm md:inline-flex"
             style={{ backgroundColor: demo.accent_color }}
           >
             <MessageCircle size={16} aria-hidden="true" />
-            <span className="hidden min-[390px]:inline">Order on WhatsApp</span>
-            <span className="min-[390px]:hidden">Order</span>
+            <span className="hidden min-[390px]:inline">{ctaLabel}</span>
+            <span className="min-[390px]:hidden">{ctaLabel.split(" ")[0]}</span>
           </a>
         </div>
       </nav>

@@ -131,6 +131,8 @@ export async function PUT(request: Request, { params }: RouteContext) {
       description: item.description?.trim() || null,
       price: item.price?.trim() || null,
       image_url: item.image_url?.trim() || null,
+      category: item.category?.trim() || "Main Dishes",
+      featured: item.featured ?? false,
       sort_order: item.sort_order ?? index
     }));
 
