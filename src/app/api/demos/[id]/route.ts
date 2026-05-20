@@ -8,13 +8,13 @@ import {
 import type { DemoPayload } from "@/lib/types";
 
 type RouteContext = {
-  params: Promise<{
+  params: {
     id: string;
-  }>;
+  };
 };
 
 export async function GET(_request: Request, { params }: RouteContext) {
-  const { id } = await params;
+  const { id } = params;
   const supabase = await createSupabaseServerClient();
   if (!supabase) {
     return NextResponse.json(
@@ -55,7 +55,7 @@ export async function GET(_request: Request, { params }: RouteContext) {
 }
 
 export async function PUT(request: Request, { params }: RouteContext) {
-  const { id } = await params;
+  const { id } = params;
   const supabase = await createSupabaseServerClient();
   if (!supabase) {
     return NextResponse.json(

@@ -139,13 +139,15 @@ export function sanitizeDemoPayload(payload: DemoPayload) {
     instagram_url: payload.instagram_url?.trim() || null,
     facebook_url: payload.facebook_url?.trim() || null,
     primary_color: payload.primary_color || "#171412",
-    accent_color: payload.accent_color || "#ea580c",    restaurant_type: payload.restaurant_type || "Fast Casual",
+    accent_color: payload.accent_color || "#ea580c",
+    restaurant_type: payload.restaurant_type || "Fast Casual",
     cta_type: payload.cta_type || "WhatsApp Order",
     cta_label: payload.cta_label?.trim() || null,
     cta_url: payload.cta_url?.trim() || null,
     secondary_cta_enabled: payload.secondary_cta_enabled ?? false,
     secondary_cta_label: payload.secondary_cta_label?.trim() || null,
-    secondary_cta_url: payload.secondary_cta_url?.trim() || null,    status: payload.status as DemoStatus
+    secondary_cta_url: payload.secondary_cta_url?.trim() || null,
+    status: payload.status as DemoStatus
   };
 }
 

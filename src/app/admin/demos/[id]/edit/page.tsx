@@ -3,13 +3,13 @@ import { DemoForm } from "@/components/admin/demo-form";
 import { getDemoById } from "@/lib/demo-data";
 
 type PageProps = {
-  params: Promise<{
+  params: {
     id: string;
-  }>;
+  };
 };
 
 export default async function EditDemoPage({ params }: PageProps) {
-  const { id } = await params;
+  const { id } = params;
   const demo = await getDemoById(id);
   if (!demo) notFound();
 
