@@ -2,16 +2,16 @@ import { canPreviewDemos, getDemoBySlug } from "@/lib/demo-data";
 import { RestaurantDemoPage } from "@/components/demo/restaurant-demo-page";
 
 type PageProps = {
-  params: Promise<{
+  params: {
     slug: string;
-  }>;
-  searchParams: Promise<{
+  };
+  searchParams: {
     preview?: string;
-  }>;
+  };
 };
 
 export async function generateMetadata({ params }: PageProps) {
-  const { slug } = await params;
+  const { slug } = params;
   const demo = await getDemoBySlug(slug).catch(() => null);
 
   if (!demo) {
@@ -29,8 +29,8 @@ export async function generateMetadata({ params }: PageProps) {
 }
 
 export default async function PublicDemoPage({ params, searchParams }: PageProps) {
-  const [{ slug }, resolvedSearchParams] = await Promise.all([params, searchParams]);
-  const isPreview = resolvedSearchParams.preview === "1";
+  const { slug } = params;
+  const isPreview = searchParams.preview === "1";
   const includeDrafts = isPreview && (await canPreviewDemos());
   const demo = await getDemoBySlug(slug, { includeDrafts });
 
