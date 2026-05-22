@@ -10,14 +10,14 @@ import {
   ChevronUp,
   Copy,
   Eye,
-  FileSpark,
   Link2,
   MessageCircle,
   Plus,
   Save,
   Sparkles,
   Star,
-  Trash2
+  Trash2,
+  WandSparkles
 } from "lucide-react";
 import { Button, Field, inputClass, textareaClass } from "@/components/ui";
 import { ImageUpload } from "@/components/admin/image-upload";
@@ -109,7 +109,16 @@ const RESTAURANT_TYPE_PROFILES = {
     tagline: "Friendly meals for every table.",
     description: "Approachable layout with warm messaging and clear customer pathways."
   }
-};
+} as const;
+
+type RestaurantTypeKey = keyof typeof RESTAURANT_TYPE_PROFILES;
+
+function getRestaurantProfile(typeKey: string | undefined): (typeof RESTAURANT_TYPE_PROFILES)[RestaurantTypeKey] {
+  if (typeKey && typeKey in RESTAURANT_TYPE_PROFILES) {
+    return RESTAURANT_TYPE_PROFILES[typeKey as RestaurantTypeKey];
+  }
+  return RESTAURANT_TYPE_PROFILES["Fast Casual"];
+}
 
 const CTA_TYPES = [
   "WhatsApp Order",
@@ -237,7 +246,7 @@ export function DemoForm({
   }
 
   function applyRestaurantType(type: string) {
-    const profile = RESTAURANT_TYPE_PROFILES[type] || RESTAURANT_TYPE_PROFILES["Fast Casual"];
+    const profile = getRestaurantProfile(type);
     setPayload((current) => {
       const defaultPalette = current.primary_color === "#171412" && current.accent_color === "#ea580c";
       const paletteMatchesCurrent = Object.values(RESTAURANT_TYPE_PROFILES).some(
@@ -252,7 +261,7 @@ export function DemoForm({
         primary_color: defaultPalette || paletteMatchesCurrent ? profile.primary_color : current.primary_color,
         accent_color: defaultPalette || paletteMatchesCurrent ? profile.accent_color : current.accent_color,
         cta_type:
-          current.cta_type === RESTAURANT_TYPE_PROFILES[current.restaurant_type]?.suggested_cta ||
+          current.cta_type === getRestaurantProfile(current.restaurant_type).suggested_cta ||
           current.cta_type === "WhatsApp Order"
             ? profile.suggested_cta
             : current.cta_type,
@@ -337,7 +346,7 @@ export function DemoForm({
   }
 
   function generateDescription() {
-    const profile = RESTAURANT_TYPE_PROFILES[payload.restaurant_type] || RESTAURANT_TYPE_PROFILES["Fast Casual"];
+    const profile = getRestaurantProfile(payload.restaurant_type);
     updateField(
       "description",
       payload.description || `${profile.description} The page is designed to convert with a strong hero, quick CTA, and easy contact flow.`
@@ -345,7 +354,7 @@ export function DemoForm({
   }
 
   function generatePalette() {
-    const profile = RESTAURANT_TYPE_PROFILES[payload.restaurant_type] || RESTAURANT_TYPE_PROFILES["Fast Casual"];
+    const profile = getRestaurantProfile(payload.restaurant_type);
     updateField("primary_color", profile.primary_color);
     updateField("accent_color", profile.accent_color);
   }
@@ -507,7 +516,7 @@ export function DemoForm({
             </div>
             <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
               <Button type="button" variant="secondary" onClick={() => generatePalette()}>
-                <FileSpark size={16} />
+                <WandSparkles size={16} />
                 Palette
               </Button>
               <Button type="button" variant="secondary" onClick={() => generateHeroPrompt()}>
